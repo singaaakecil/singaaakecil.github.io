@@ -399,6 +399,31 @@
     var layerControl = L.control.layers(baseMaps, Layers, {collapsed:false});
     layerControl.addTo(map);
 
+      L.Control.Watermark = L.Control.extend({
+          onAdd: function(map) {
+              var text = L.DomUtil.create('div');
+              text.innerHTML = '22611042 - Akhmad Faris Mubarak'; /* Teks yang ingin digunakan sebagai watermark */
+              text.style.fontSize = '18px'; /* Ukuran font teks */
+              text.style.fontFamily = 'Arial, sans-serif'; /* Jenis font teks */
+              text.style.color = 'rgba(255, 255, 255, 0.8)'; /* Warna teks */
+              text.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; /* Warna latar belakang teks dan tingkat transparansi */
+              text.style.padding = '8px 12px'; /* Padding teks */
+              text.style.borderRadius = '5px'; /* Border radius untuk sudut */
+              text.style.margin = '10px'; /* Margin dari tepi peta */
+
+              return text;
+          },
+          onRemove: function(map) {
+              // Nothing to do here
+          }
+      });
+
+      L.control.watermark = function(opts) {
+          return new L.Control.Watermark(opts);
+      }
+
+      L.control.watermark({ position: 'topright' }).addTo(map);
+
 
       </script>
   </body>
